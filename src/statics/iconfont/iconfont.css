@@ -1,6 +1,4 @@
-import { injectGlobal } from 'styled-components';
 
-injectGlobal`
   @font-face {
     font-family: "iconfont";
     src: url('./iconfont.eot?t=1528610804703'); /* IE9*/
@@ -17,10 +15,3 @@ injectGlobal`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-`;
-
-
-
-
-
-

@@ -28,18 +28,20 @@
 	padding: 0 15px;
 	font-size: 17px;
 	color: #333;
-	.left {
+	&.left {
 		float: left;
 	}
-	.right {
+	&.right {
 		float: right;
 		color: #969696;
 	}
-	.active {
+	&.active {
 		color: #ea6f5a;
 	}
 }
-
+.NavItem active {
+	color: #ea6f5a;
+} 
 .SearchWrapper {
 	position: relative;
 	float: left;
@@ -71,19 +73,19 @@
 	background: #eee;
 	font-size: 14px;
     color: #666;
-    .focused {
+    &.focused {
         width: 240px;
     }
-    .slide-enter {
+    &.slide-enter {
         transition: all .2s ease-out;
     }
-    .slide-enter-active {
+    &.slide-enter-active {
         width: 240px;
     }
-    .slide-exit {
+    &.slide-exit {
         transition: all .2s ease-out;
     }
-    .slide-exit-active {
+    &.slide-exit-active {
         width: 160px;
     }
 }
