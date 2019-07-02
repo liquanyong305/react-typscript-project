@@ -2,11 +2,17 @@ import React, {Component} from 'react'
 import './header.scss'
 import { Link } from 'react-router-dom'
 import { CSSTransition } from 'react-transition-group';
-
+import { actionCreators } from './store';
+import { Dispatch } from 'redux'
+import { connect } from 'react-redux'
+import {
+    IStoreState,
+    IAction
+} from '../../store/stateTypes'
 class Header extends Component {
 
     render() {
-        const { focused, handleInputFocus, handleInputBlur, list } = this.props;
+        
         return (
             <div className='HeaderWrapper'>
                 <Link to="/">
@@ -38,22 +44,22 @@ class Header extends Component {
     }
 }
 
-const mapStateToProps = (state:) => {
+const mapStateToProps = (state:IStoreState) => {
 	return {
-		focused: state.getIn(['header', 'focused']),
-		list: state.getIn(['header', 'list']),
-		page: state.getIn(['header', 'page']),
-		totalPage: state.getIn(['header', 'totalPage']),
-		mouseIn: state.getIn(['header', 'mouseIn'])
+		focused: state.headerState.focused,
+		list: state.headerState.list,
+		page: state.headerState.page,
+		totalPage: state.headerState.totalPage,
+		mouseIn: state.headerState.mouseIn
 	}
 }
 
-const mapDispathToProps = (dispatch) => {
+const mapDispathToProps = (dispatch:Dispatch) => {
 	return {
-		handleInputFocus(list) {
-			(list.size === 0) && dispatch(actionCreators.getList());
-			dispatch(actionCreators.searchFocus());
-		},
+		// handleInputFocus(list: Array<string>) {
+		// 	(list.length === 0) && dispatch(actionCreators.getList());
+		// 	dispatch(actionCreators.searchFocus());
+		// },
 		handleInputBlur() {
 			dispatch(actionCreators.searchBlur());
 		},
@@ -63,7 +69,7 @@ const mapDispathToProps = (dispatch) => {
 		handleMouseLeave() {
 			dispatch(actionCreators.mouseLeave());
 		},
-		handleChangePage(page, totalPage, spin) {
+		handleChangePage(page: number, totalPage:number, spin:any) {
 			let originAngle = spin.style.transform.replace(/[^0-9]/ig, '');
 			if (originAngle) {
 				originAngle = parseInt(originAngle, 10);

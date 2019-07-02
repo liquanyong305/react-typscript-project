@@ -1,8 +1,9 @@
 import * as constants from './constants';
 import axios from 'axios';
 import { Dispatch } from 'redux'
+import { IActionCreator } from '../../../store/stateTypes'
 
-const changeList = (data: Array<String>) => ({
+const changeList:IActionCreator = (data: Array<String>) => ({
 	type: constants.CHANGE_LIST,
 	data: data,
 	totalPage: Math.ceil(data.length / 10)
