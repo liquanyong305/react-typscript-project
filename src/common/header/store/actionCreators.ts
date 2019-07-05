@@ -1,7 +1,8 @@
 import * as constants from './constants';
 import axios from 'axios';
-import { Dispatch } from 'redux'
+import { Dispatch, ActionCreator } from 'redux'
 import { IActionCreator } from '../../../store/stateTypes'
+import { ThunkAction } from 'redux-thunk';
 
 const changeList:IActionCreator = (data: Array<String>) => ({
 	type: constants.CHANGE_LIST,
@@ -30,8 +31,16 @@ export const changePage = (page: number) => ({
 	page
 });
 
-export const getList = () => {
-	return (dispatch: Dispatch) => {
+export const getList= () => {
+	return async (dispatch: Dispatch) => {
+
+		try {
+			const res = await axios.get('/api/headerList.json');
+			dispatch(changeList(res.data.data));
+		}catch (err) {
+      		console.error(err);
+    	}
+
 		axios.get('/api/headerList.json').then((res) => {
 			const data = res.data;
 			dispatch(changeList(data.data));

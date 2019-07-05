@@ -45,7 +45,7 @@
 .SearchWrapper {
 	position: relative;
 	float: left;
-	.zoom {
+	&.zoom {
 		position: absolute;
 		right: 5px;
 		bottom: 5px;
@@ -53,7 +53,7 @@
 		line-height: 30px;
 		border-radius: 15px;
 		text-align: center;
-		.focused {
+		&.focused {
 			background: #777;
 			color: #fff;
 		}

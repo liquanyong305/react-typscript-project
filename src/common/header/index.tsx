@@ -6,13 +6,36 @@ import { actionCreators } from './store';
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
 import {
+	HeaderState,
     IStoreState,
-    IAction
+    IAction,
+	IActionCreator,
+	defaultState
 } from '../../store/stateTypes'
-class Header extends Component {
+
+
+interface HeaderPropType {
+	handleInputBlur:Function,
+	handleMouseEnter:Function,
+	handleMouseLeave:Function,
+	handleChangePage:Function
+}
+
+class Header extends Component<HeaderPropType, HeaderState> {
+	constructor(props:HeaderPropType) {
+		super(props)
+		this.state = {
+			focused: false,
+			mouseIn: false,
+			list: [],
+			page: 1,
+			totalPage: 1
+		}
+	}
 
     render() {
-        
+		const { handleMouseEnter, handleMouseLeave, handleChangePage } = this.props;
+		const { focused, list, page, totalPage} = this.state;
         return (
             <div className='HeaderWrapper'>
                 <Link to="/">
@@ -33,9 +56,8 @@ class Header extends Component {
                             <input type="text" 
                                 placeholder="search" 
                                 className="NavSearch {focused ? 'focused': ''}" 
-                                onFocus={() => handleInputFocus(list)}
-                                onBlur={handleInputBlur}>
-                                </input>
+                            >
+                            </input>
                         </CSSTransition>
                     </div>
                 </Link>
@@ -44,20 +66,16 @@ class Header extends Component {
     }
 }
 
-const mapStateToProps = (state:IStoreState) => {
-	return {
-		focused: state.headerState.focused,
-		list: state.headerState.list,
-		page: state.headerState.page,
-		totalPage: state.headerState.totalPage,
-		mouseIn: state.headerState.mouseIn
-	}
-}
+const mapStateToProps = (state:IStoreState) => ({
+		headerState: state.headerState,
+})
 
 const mapDispathToProps = (dispatch:Dispatch) => {
 	return {
 		// handleInputFocus(list: Array<string>) {
-		// 	(list.length === 0) && dispatch(actionCreators.getList());
+		// 	if(list.length === 0) {
+		// 		dispatch(actionCreators.getList());
+		// 	} 
 		// 	dispatch(actionCreators.searchFocus());
 		// },
 		handleInputBlur() {
