@@ -6,7 +6,7 @@ import { actionCreators } from './store';
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
 import {
-	HeaderState,
+	IHeaderState,
     IStoreState,
     IAction,
 	IActionCreator,
@@ -15,27 +15,20 @@ import {
 
 
 interface HeaderPropType {
+	header:IHeaderState,
 	handleInputBlur:Function,
 	handleMouseEnter:Function,
 	handleMouseLeave:Function,
 	handleChangePage:Function
 }
 
-class Header extends Component<HeaderPropType, HeaderState> {
+class Header extends Component<HeaderPropType> {
 	constructor(props:HeaderPropType) {
 		super(props)
-		this.state = {
-			focused: false,
-			mouseIn: false,
-			list: [],
-			page: 1,
-			totalPage: 1
-		}
 	}
 
     render() {
-		const { handleMouseEnter, handleMouseLeave, handleChangePage } = this.props;
-		const { focused, list, page, totalPage} = this.state;
+		const { header, handleMouseEnter, handleMouseLeave, handleChangePage } = this.props;
         return (
             <div className='HeaderWrapper'>
                 <Link to="/">
@@ -52,10 +45,10 @@ class Header extends Component<HeaderPropType, HeaderState> {
                         </div>
                     </div>
                     <div className='SearchWrapper'>
-						<CSSTransition in={focused}	timeout={200} classNames="slide">
+						<CSSTransition in={header.focused}	timeout={200} classNames="slide">
                             <input type="text" 
                                 placeholder="search" 
-                                className="NavSearch {focused ? 'focused': ''}" 
+                                className="NavSearch {headerState.focused ? 'focused': ''}" 
                             >
                             </input>
                         </CSSTransition>
@@ -67,7 +60,7 @@ class Header extends Component<HeaderPropType, HeaderState> {
 }
 
 const mapStateToProps = (state:IStoreState) => ({
-		headerState: state.headerState,
+		header: state.header,
 })
 
 const mapDispathToProps = (dispatch:Dispatch) => {

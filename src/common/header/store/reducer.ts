@@ -1,10 +1,11 @@
 import * as constants from './constants'
 import {
+	IHeaderState,
     defaultState,
     IAction
 } from '../../../store/stateTypes'
 
-export default (state = defaultState.headerState, action:IAction) => {
+const header = (state:IHeaderState = defaultState.header, action:IAction) => {
 	switch(action.type) {
 		case constants.SEARCH_FOCUS:
 			return Object.assign({}, state,  {focused: action.focused});
@@ -25,3 +26,5 @@ export default (state = defaultState.headerState, action:IAction) => {
 			return state;
 	}
 }
+
+export default header

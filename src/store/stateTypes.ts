@@ -1,4 +1,4 @@
-export type HeaderState = {
+export type IHeaderState = {
 	focused: boolean,
 	mouseIn: boolean,
 	list: Array<string>,
@@ -8,11 +8,11 @@ export type HeaderState = {
 
 // ******** store state ********* //
 export type IStoreState = {
-    headerState: HeaderState
+    header: IHeaderState
 }
 
 export const defaultState: IStoreState = {
-    headerState: {
+    header: {
         focused: false,
         mouseIn: false,
         list: [],
