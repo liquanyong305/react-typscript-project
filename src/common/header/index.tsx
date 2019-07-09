@@ -3,8 +3,9 @@ import './header.scss'
 import { Link } from 'react-router-dom'
 import { CSSTransition } from 'react-transition-group';
 import { actionCreators } from './store';
-import { Dispatch } from 'redux'
+import { Dispatch, Action } from 'redux'
 import { connect } from 'react-redux'
+import { ThunkDispatch } from 'redux-thunk';
 import {
 	IHeaderState,
     IStoreState,
@@ -16,6 +17,7 @@ import {
 
 interface HeaderPropType {
 	header:IHeaderState,
+	handleInputFocus:Function,
 	handleInputBlur:Function,
 	handleMouseEnter:Function,
 	handleMouseLeave:Function,
@@ -28,7 +30,7 @@ class Header extends Component<HeaderPropType> {
 	}
 
     render() {
-		const { header, handleMouseEnter, handleMouseLeave, handleChangePage } = this.props;
+		const { header, handleInputFocus, handleInputBlur, handleMouseEnter, handleMouseLeave, handleChangePage } = this.props;
         return (
             <div className='HeaderWrapper'>
                 <Link to="/">
@@ -43,16 +45,17 @@ class Header extends Component<HeaderPropType> {
                         <div className="NavItem right">
                             <i className="iconfont">&#xe636;</i>
                         </div>
-                    </div>
-                    <div className='SearchWrapper'>
-						<CSSTransition in={header.focused}	timeout={200} classNames="slide">
-                            <input type="text" 
-                                placeholder="search" 
-                                className="NavSearch {headerState.focused ? 'focused': ''}" 
-                            >
-                            </input>
-                        </CSSTransition>
-                    </div>
+                    
+						<div className='SearchWrapper'>
+							<CSSTransition in={header.focused}	timeout={200} classNames="slide">
+								<input type="text" 
+									placeholder="search" 
+									className="NavSearch {headerState.focused ? 'focused': ''}" 
+								>
+								</input>
+							</CSSTransition>
+						</div>
+					</div>
                 </Link>
             </div>
         );
@@ -63,14 +66,14 @@ const mapStateToProps = (state:IStoreState) => ({
 		header: state.header,
 })
 
-const mapDispathToProps = (dispatch:Dispatch) => {
+const mapDispathToProps = (dispatch: ThunkDispatch<IStoreState, void, Action>) => {
 	return {
-		// handleInputFocus(list: Array<string>) {
-		// 	if(list.length === 0) {
-		// 		dispatch(actionCreators.getList());
-		// 	} 
-		// 	dispatch(actionCreators.searchFocus());
-		// },
+		handleInputFocus(list: Array<string>) {
+			if(list.length === 0) {
+				dispatch(actionCreators.getList());
+			} 
+			dispatch(actionCreators.searchFocus());
+		},
 		handleInputBlur() {
 			dispatch(actionCreators.searchBlur());
 		},

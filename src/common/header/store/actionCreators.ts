@@ -1,10 +1,10 @@
 import * as constants from './constants';
 import axios from 'axios';
-import { Dispatch, ActionCreator } from 'redux'
-import { IActionCreator } from '../../../store/stateTypes'
-import { ThunkAction } from 'redux-thunk';
+import { Dispatch, ActionCreator,Action } from 'redux'
+import { IActionCreator, IAction,IStoreState } from '../../../store/stateTypes'
+import { ThunkDispatch } from 'redux-thunk';
 
-const changeList:IActionCreator = (data: Array<String>) => ({
+const changeList = (data: Array<String>) => ({
 	type: constants.CHANGE_LIST,
 	data: data,
 	totalPage: Math.ceil(data.length / 10)
@@ -31,21 +31,14 @@ export const changePage = (page: number) => ({
 	page
 });
 
-export const getList= () => {
-	return async (dispatch: Dispatch) => {
-
+export const getList = () => {
+	return async (dispatch: ThunkDispatch<IStoreState, void, Action>) => {
+		let headerArray: Array<String> = new Array<String>();
 		try {
 			const res = await axios.get('/api/headerList.json');
 			dispatch(changeList(res.data.data));
 		}catch (err) {
       		console.error(err);
     	}
-
-		axios.get('/api/headerList.json').then((res) => {
-			const data = res.data;
-			dispatch(changeList(data.data));
-		}).catch(() => {
-			console.log('error');
-		})
 	}
 };

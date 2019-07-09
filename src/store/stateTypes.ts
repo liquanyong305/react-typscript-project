@@ -1,3 +1,4 @@
+import {Action} from 'redux'
 export type IHeaderState = {
 	focused: boolean,
 	mouseIn: boolean,
