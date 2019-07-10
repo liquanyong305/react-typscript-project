@@ -8,9 +8,9 @@ import {
 const header = (state:IHeaderState = defaultState.header, action:IAction) => {
 	switch(action.type) {
 		case constants.SEARCH_FOCUS:
-			return Object.assign({}, state,  {focused: action.focused});
+			return Object.assign({}, state,  {focused: true});
 		case constants.SEARCH_BLUR:
-			return Object.assign({}, state,  {focused: action.focused});
+			return Object.assign({}, state,  {focused: false});
 		case constants.CHANGE_LIST:
 			return Object.assign({}, state,  {
 				list: action.data,

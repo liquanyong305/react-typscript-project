@@ -39,13 +39,11 @@
 		color: #ea6f5a;
 	}
 }
-.NavItem active {
-	color: #ea6f5a;
-} 
+
 .SearchWrapper {
 	position: relative;
 	float: left;
-	&.zoom {
+	.zoom {
 		position: absolute;
 		right: 5px;
 		bottom: 5px;
@@ -159,10 +157,10 @@
 	border-radius: 19px;
 	border: 1px solid #ec6149;
 	font-size: 14px;
-	.reg {
+	&.reg {
 		color: #ec6149;
 	}
-	.writting {
+	&.writting {
 		color: #fff;
 		background: #ec6149;
 	}

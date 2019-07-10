@@ -1,7 +1,7 @@
 import * as constants from './constants';
 import axios from 'axios';
-import { Dispatch, ActionCreator,Action } from 'redux'
-import { IActionCreator, IAction,IStoreState } from '../../../store/stateTypes'
+import { Action } from 'redux'
+import { IStoreState } from '../../../store/stateTypes'
 import { ThunkDispatch } from 'redux-thunk';
 
 const changeList = (data: Array<String>) => ({
