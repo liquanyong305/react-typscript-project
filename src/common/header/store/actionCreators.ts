@@ -33,7 +33,6 @@ export const changePage = (page: number) => ({
 
 export const getList = () => {
 	return async (dispatch: ThunkDispatch<IStoreState, void, Action>) => {
-		let headerArray: Array<String> = new Array<String>();
 		try {
 			const res = await axios.get('/api/headerList.json');
 			dispatch(changeList(res.data.data));

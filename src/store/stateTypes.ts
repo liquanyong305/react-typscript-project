@@ -1,25 +1,8 @@
-import {Action} from 'redux'
-export type IHeaderState = {
-	focused: boolean,
-	mouseIn: boolean,
-	list: Array<string>,
-	page: number,
-	totalPage: number
-};
+import {IHeaderState} from '../common/header/entity/stateTypes'
 
 // ******** store state ********* //
 export type IStoreState = {
     header: IHeaderState
-}
-
-export const defaultState: IStoreState = {
-    header: {
-        focused: false,
-        mouseIn: false,
-        list: [],
-        page: 1,
-        totalPage: 1
-    }
 }
 
 // ******** action ********* //

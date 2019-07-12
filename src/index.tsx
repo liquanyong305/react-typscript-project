@@ -6,9 +6,8 @@ import * as serviceWorker from './serviceWorker';
 import './statics/iconfont/iconfont.css';
 import { Provider } from "react-redux";
 import configureStore from "./store/index"
-import { defaultState } from './store/stateTypes'
 
-const store = configureStore(defaultState)
+const store = configureStore()
 
 ReactDOM.render(
     <Provider store={store}>

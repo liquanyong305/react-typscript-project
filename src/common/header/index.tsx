@@ -7,9 +7,9 @@ import { Action } from 'redux'
 import { connect } from 'react-redux'
 import { ThunkDispatch } from 'redux-thunk';
 import {
-	IHeaderState,
     IStoreState
 } from '../../store/stateTypes'
+import {IHeaderState} from './entity/stateTypes'
 
 interface HeaderPropType {
 	header:IHeaderState,
