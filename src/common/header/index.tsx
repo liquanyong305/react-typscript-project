@@ -9,7 +9,7 @@ import { ThunkDispatch } from 'redux-thunk';
 import {
     IStoreState
 } from '../../store/stateTypes'
-import {IHeaderState} from './entity/stateTypes'
+import {IHeaderState} from './entity/stateTypes';
 
 interface HeaderPropType {
 	header:IHeaderState,
