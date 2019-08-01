@@ -1,7 +1,6 @@
 import React,{ Component } from 'react'
 import {ICustomer} from '../entity/stateType'
 
-
 interface SearchListProps{
     searchResultList:Array<ICustomer>,
     selectItem:Function,
@@ -32,15 +31,17 @@ const SearchList : React.SFC<SearchListProps> = ({searchResultList,selectItem,de
                         <thead>
                             <tr>
                                 <th className="nowrap">id</th>
-                                <th className="nowrap">name</th>
-                                <th className="nowrap">country</th>
+                                <th className="nowrap">NAME</th>
+                                <th className="nowrap">COUNTRY</th>
                             </tr>
                         </thead>
                         <tbody id="tbodyid">
                             {
                                 searchResultList.length && searchResultList.map((customer, index)=>(
                                     <tr key={index}>
-                                        <td></td>
+                                        <td><a href={customer.id}>{customer.id}</a> </td>
+                                        <td>{customer.name}</td>
+                                        <td>{customer.country}</td>
                                     </tr>
                                 ))
                             }

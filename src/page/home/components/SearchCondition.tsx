@@ -53,7 +53,7 @@ export default class SearchCondition extends Component<SearchProps, SearchCondit
                     <div className="body">
                         <div className="row clearfix">
                             <div className="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-control-label">
-                                <label htmlFor="partyName1">name</label>
+                                <label htmlFor="name">name</label>
                             </div>
                             <div className="col-lg-5 col-md-5 col-sm-5 col-xs-5">
                                 <div className="form-group">

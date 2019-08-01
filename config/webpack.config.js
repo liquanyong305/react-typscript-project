@@ -474,6 +474,22 @@ module.exports = function(webpackEnv) {
         },
       ],
     },
+    devServer: {
+
+          proxy: {
+              '/API/**': {
+                  //host 即为你后台springboot的地址 8083对应的端口号
+                  target: 'http://localhost:8080/',
+                  secure: false,
+                  changeOrigin: true,
+                  // 前端请求uri:api/user  解析出来的结果就是http://{host}:8083/user  即去掉api前缀
+                  pathRewrite: { '^/API': '/API' }
+              }
+          },
+          //host: 'localhost', // can be overwritten by process.env.HOST
+          //port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+      },
+
     plugins: [
       // Generates an `index.html` file with the <script> injected.
       new HtmlWebpackPlugin(
